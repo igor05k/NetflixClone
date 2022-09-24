@@ -18,6 +18,7 @@
 		82BA2A5228DFB28900B13A8B /* TopSearchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A5128DFB28900B13A8B /* TopSearchesViewController.swift */; };
 		82BA2A5528DFB73000B13A8B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A5428DFB73000B13A8B /* UIColor+.swift */; };
 		82BA2A5728DFBA7700B13A8B /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A5628DFBA7700B13A8B /* CollectionViewTableViewCell.swift */; };
+		82BA2A5928DFC28800B13A8B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A5828DFC28800B13A8B /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		82BA2A5128DFB28900B13A8B /* TopSearchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSearchesViewController.swift; sourceTree = "<group>"; };
 		82BA2A5428DFB73000B13A8B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		82BA2A5628DFBA7700B13A8B /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
+		82BA2A5828DFC28800B13A8B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				82BA2A5628DFBA7700B13A8B /* CollectionViewTableViewCell.swift */,
+				82BA2A5828DFC28800B13A8B /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				8247321C28DFAC990076351B /* MainTabBarController.swift in Sources */,
 				8247321828DFAC990076351B /* AppDelegate.swift in Sources */,
 				8247321A28DFAC990076351B /* SceneDelegate.swift in Sources */,
+				82BA2A5928DFC28800B13A8B /* HeaderView.swift in Sources */,
 				82BA2A5728DFBA7700B13A8B /* CollectionViewTableViewCell.swift in Sources */,
 				82BA2A5028DFB27900B13A8B /* ComingSoonViewController.swift in Sources */,
 				82BA2A4C28DFB20700B13A8B /* HomeViewController.swift in Sources */,
