@@ -1,6 +1,8 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    private let sections = ["Popular", "Trending TV", "Trending movies", "Upcoming Movies", "Top rated"]
+    
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
@@ -30,8 +32,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section]
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.text = header.textLabel?.text?.capitalized
+        header.textLabel?.textColor = .white
+        header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
