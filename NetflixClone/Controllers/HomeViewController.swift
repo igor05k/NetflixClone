@@ -28,9 +28,35 @@ class HomeViewController: UIViewController {
     }
     
     func fetchData() {
-        APICaller.shared.getTrendingMovies { _ in
-            
-        }
+//        APICaller.shared.getTrendingMovies { results in
+//            switch results {
+//            case .success(let success):
+//                print(success)
+//            case .failure(let failure):
+//                print(failure)
+//            }
+//        }
+        
+//        APICaller.shared.getTrendingTVShows { results in
+//            switch results {
+//            case .success(let success):
+//                print(success)
+//            case .failure(let failure):
+//                print(failure)
+//            }
+//        }
+        
+//        APICaller.shared.getUpcomingMovies { _ in
+//
+//        }
+        
+//        APICaller.shared.getTopRatedMovies { _ in
+//            //
+//        }
+        
+//        APICaller.shared.getPopularTVShows { _ in
+//            //
+//        }
     }
 }
 

@@ -13,7 +13,8 @@
 		8247322128DFACA00076351B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8247322028DFACA00076351B /* Assets.xcassets */; };
 		8247322428DFACA00076351B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8247322228DFACA00076351B /* LaunchScreen.storyboard */; };
 		829C82E328E0DEE000976AEB /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E228E0DEE000976AEB /* APICaller.swift */; };
-		829C82E528E0E22A00976AEB /* MoviesAndTVShowsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E428E0E22A00976AEB /* MoviesAndTVShowsResponse.swift */; };
+		829C82E528E0E22A00976AEB /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E428E0E22A00976AEB /* MoviesResponse.swift */; };
+		829C82E728E0ED4900976AEB /* TVShowsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E628E0ED4900976AEB /* TVShowsResponse.swift */; };
 		82BA2A4C28DFB20700B13A8B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A4B28DFB20700B13A8B /* HomeViewController.swift */; };
 		82BA2A4E28DFB23B00B13A8B /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A4D28DFB23B00B13A8B /* DownloadsViewController.swift */; };
 		82BA2A5028DFB27900B13A8B /* ComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A4F28DFB27900B13A8B /* ComingSoonViewController.swift */; };
@@ -32,7 +33,8 @@
 		8247322328DFACA00076351B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8247322528DFACA00076351B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		829C82E228E0DEE000976AEB /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
-		829C82E428E0E22A00976AEB /* MoviesAndTVShowsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAndTVShowsResponse.swift; sourceTree = "<group>"; };
+		829C82E428E0E22A00976AEB /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
+		829C82E628E0ED4900976AEB /* TVShowsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsResponse.swift; sourceTree = "<group>"; };
 		82BA2A4B28DFB20700B13A8B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		82BA2A4D28DFB23B00B13A8B /* DownloadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
 		82BA2A4F28DFB27900B13A8B /* ComingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +109,8 @@
 		82BA2A4728DFB18500B13A8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				829C82E428E0E22A00976AEB /* MoviesAndTVShowsResponse.swift */,
+				829C82E428E0E22A00976AEB /* MoviesResponse.swift */,
+				829C82E628E0ED4900976AEB /* TVShowsResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,7 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				829C82E528E0E22A00976AEB /* MoviesAndTVShowsResponse.swift in Sources */,
+				829C82E528E0E22A00976AEB /* MoviesResponse.swift in Sources */,
 				82BA2A4E28DFB23B00B13A8B /* DownloadsViewController.swift in Sources */,
 				82BA2A5528DFB73000B13A8B /* UIColor+.swift in Sources */,
 				8247321C28DFAC990076351B /* MainTabBarController.swift in Sources */,
@@ -225,6 +228,7 @@
 				8247321A28DFAC990076351B /* SceneDelegate.swift in Sources */,
 				82BA2A5928DFC28800B13A8B /* HeaderView.swift in Sources */,
 				82BA2A5728DFBA7700B13A8B /* CollectionViewTableViewCell.swift in Sources */,
+				829C82E728E0ED4900976AEB /* TVShowsResponse.swift in Sources */,
 				82BA2A5028DFB27900B13A8B /* ComingSoonViewController.swift in Sources */,
 				829C82E328E0DEE000976AEB /* APICaller.swift in Sources */,
 				82BA2A4C28DFB20700B13A8B /* HomeViewController.swift in Sources */,
