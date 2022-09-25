@@ -1,10 +1,20 @@
 import UIKit
 
 class HeaderView: UIView {
+    // MARK: Image views
     lazy var imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.image = UIImage(named: "dune")
+        iv.clipsToBounds = true
+        return iv
+    }()
+    
+    lazy var netflixLogoImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(named: "netflixLogo")
+        iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
     }()
@@ -27,6 +37,7 @@ class HeaderView: UIView {
         return iv
     }()
     
+    // MARK: Labels
     lazy var listLabel: UILabel = {
         let label = UILabel()
         label.text = "My list"
@@ -45,6 +56,34 @@ class HeaderView: UIView {
         return label
     }()
     
+    lazy var tvShowsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "TV Shows"
+        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    lazy var moviesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Movies"
+        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    lazy var myListLabel: UILabel = {
+        let label = UILabel()
+        label.text = "My List"
+        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    // MARK: Buttons
     lazy var playButton: UIButton = {
         var container = AttributeContainer()
         container.font = UIFont.systemFont(ofSize: 16, weight: .bold)
@@ -65,6 +104,16 @@ class HeaderView: UIView {
         bttn.tintColor = .black
         
         return bttn
+    }()
+    
+    // MARK: Stack views
+    
+    lazy var topStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.spacing = 25
+        return stack
     }()
     
     lazy var leftStackView: UIStackView = {
@@ -98,7 +147,9 @@ class HeaderView: UIView {
         super.init(frame: frame)
         addSubview(imageView)
         addGradient()
+        setNetflixLogo()
         setPlayButton()
+        setTopStackView()
         setLeftStackView()
         setRightStackView()
     }
@@ -110,6 +161,18 @@ class HeaderView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.frame = bounds
+    }
+    
+    // MARK: Constraints
+    private func setNetflixLogo() {
+        addSubview(netflixLogoImageView)
+        
+        NSLayoutConstraint.activate([
+            netflixLogoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            netflixLogoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            netflixLogoImageView.widthAnchor.constraint(equalToConstant: 60),
+            netflixLogoImageView.heightAnchor.constraint(equalToConstant: 60),
+        ])
     }
     
     private func setPlayButton() {
@@ -146,6 +209,19 @@ class HeaderView: UIView {
             rightStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
             rightStackView.heightAnchor.constraint(equalToConstant: 50),
             rightStackView.widthAnchor.constraint(equalToConstant: 50),
+        ])
+    }
+    
+    private func setTopStackView() {
+        self.addSubview(topStackView)
+        topStackView.addArrangedSubview(tvShowsLabel)
+        topStackView.addArrangedSubview(moviesLabel)
+        topStackView.addArrangedSubview(myListLabel)
+        
+        NSLayoutConstraint.activate([
+            topStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            topStackView.centerYAnchor.constraint(equalTo: netflixLogoImageView.centerYAnchor),
+            topStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
         ])
     }
 }
