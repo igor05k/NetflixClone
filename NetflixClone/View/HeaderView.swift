@@ -9,10 +9,27 @@ class HeaderView: UIView {
         return iv
     }()
     
+    lazy var addImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(systemName: "plus")
+        iv.contentMode = .scaleAspectFit
+        iv.tintColor = .white
+        iv.clipsToBounds = true
+        return iv
+    }()
+    
+    lazy var listLabel: UILabel = {
+        let label = UILabel()
+        label.text = "My list"
+        label.font = .systemFont(ofSize: 15, weight: .light)
+        
+        return label
+    }()
+    
     lazy var playButton: UIButton = {
         var container = AttributeContainer()
         container.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-
+        
         var configuration = UIButton.Configuration.plain()
         configuration.attributedTitle = AttributedString("Play", attributes: container)
         configuration.image = UIImage(systemName: "play.fill")
@@ -31,6 +48,14 @@ class HeaderView: UIView {
         return bttn
     }()
     
+    lazy var leftStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.spacing = 2
+        return stack
+    }()
+    
     func addGradient() {
         let gradient = CAGradientLayer()
         gradient.colors = [
@@ -47,6 +72,7 @@ class HeaderView: UIView {
         addSubview(imageView)
         addGradient()
         setPlayButton()
+        setLeftStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -66,6 +92,19 @@ class HeaderView: UIView {
             playButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
             playButton.widthAnchor.constraint(equalToConstant: 100),
             playButton.heightAnchor.constraint(equalToConstant: 35),
+        ])
+    }
+    
+    private func setLeftStackView() {
+        self.addSubview(leftStackView)
+        leftStackView.addArrangedSubview(addImageView)
+        leftStackView.addArrangedSubview(listLabel)
+        
+        NSLayoutConstraint.activate([
+            leftStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 45),
+            leftStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
+            leftStackView.heightAnchor.constraint(equalToConstant: 50),
+            leftStackView.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
 }
