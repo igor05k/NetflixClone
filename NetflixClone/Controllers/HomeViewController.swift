@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         view.addSubview(tableView)
         view.backgroundColor = .defaultBackgroundColor
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
         
         tableView.tableHeaderView = headerView
