@@ -18,10 +18,29 @@ class HeaderView: UIView {
         return iv
     }()
     
+    lazy var infoImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(systemName: "info.circle")
+        iv.contentMode = .scaleAspectFit
+        iv.tintColor = .white
+        iv.clipsToBounds = true
+        return iv
+    }()
+    
     lazy var listLabel: UILabel = {
         let label = UILabel()
         label.text = "My list"
         label.font = .systemFont(ofSize: 15, weight: .light)
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    lazy var infoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Info"
+        label.font = .systemFont(ofSize: 15, weight: .light)
+        label.textAlignment = .center
         
         return label
     }()
@@ -56,6 +75,14 @@ class HeaderView: UIView {
         return stack
     }()
     
+    lazy var rightStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.spacing = 2
+        return stack
+    }()
+    
     func addGradient() {
         let gradient = CAGradientLayer()
         gradient.colors = [
@@ -73,6 +100,7 @@ class HeaderView: UIView {
         addGradient()
         setPlayButton()
         setLeftStackView()
+        setRightStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -105,6 +133,19 @@ class HeaderView: UIView {
             leftStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
             leftStackView.heightAnchor.constraint(equalToConstant: 50),
             leftStackView.widthAnchor.constraint(equalToConstant: 50),
+        ])
+    }
+    
+    private func setRightStackView() {
+        self.addSubview(rightStackView)
+        rightStackView.addArrangedSubview(infoImageView)
+        rightStackView.addArrangedSubview(infoLabel)
+        
+        NSLayoutConstraint.activate([
+            rightStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -45),
+            rightStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
+            rightStackView.heightAnchor.constraint(equalToConstant: 50),
+            rightStackView.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
 }
