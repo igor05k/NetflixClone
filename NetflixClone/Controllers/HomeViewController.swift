@@ -19,11 +19,18 @@ class HomeViewController: UIViewController {
         let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
         
         tableView.tableHeaderView = headerView
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+    }
+    
+    func fetchData() {
+        APICaller.shared.getTrendingMovies { _ in
+            
+        }
     }
 }
 
