@@ -1,5 +1,13 @@
 import UIKit
 
+enum Sections: Int {
+    case popular = 0
+    case trendingTv = 1
+    case trendingMovies = 2
+    case upcomingMovies = 3
+    case topRated = 4
+}
+
 class HomeViewController: UIViewController {
     private let sections = ["Popular", "Trending TV", "Trending movies", "Upcoming Movies", "Top rated"]
     
@@ -19,44 +27,11 @@ class HomeViewController: UIViewController {
         let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
         
         tableView.tableHeaderView = headerView
-        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-    }
-    
-    func fetchData() {
-//        APICaller.shared.getTrendingMovies { results in
-//            switch results {
-//            case .success(let success):
-//                print(success)
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
-        
-//        APICaller.shared.getTrendingTVShows { results in
-//            switch results {
-//            case .success(let success):
-//                print(success)
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
-        
-//        APICaller.shared.getUpcomingMovies { _ in
-//
-//        }
-        
-//        APICaller.shared.getTopRatedMovies { _ in
-//            //
-//        }
-        
-//        APICaller.shared.getPopularTVShows { _ in
-//            //
-//        }
     }
 }
 
@@ -82,7 +57,61 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
-        cell.backgroundColor = .red
+        
+        switch indexPath.section {
+        case Sections.popular.rawValue:
+            APICaller.shared.getPopularTVShows { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+            
+        case Sections.trendingTv.rawValue:
+            APICaller.shared.getTrendingTVShows { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+            
+        case Sections.trendingMovies.rawValue:
+            APICaller.shared.getTrendingMovies { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+            
+        case Sections.upcomingMovies.rawValue:
+            APICaller.shared.getUpcomingMovies { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+            
+        case Sections.topRated.rawValue:
+            APICaller.shared.getTopRatedMovies { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
+        
         return cell
     }
     
