@@ -9,7 +9,7 @@ enum Sections: Int {
 }
 
 class HomeViewController: UIViewController {
-    private let sections = ["Popular", "Trending TV", "Trending movies", "Upcoming Movies", "Top rated"]
+    private let sections = ["Popular", "Trending Shows", "Trending movies", "Upcoming Movies", "Top rated"]
     
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
