@@ -2,9 +2,10 @@ import UIKit
 
 class ComingSoon: UIViewController {
     var titles: [MoviesAndTVShows] = [MoviesAndTVShows]()
+    
     lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(UpcomingTitlesTableViewCell.self, forCellReuseIdentifier: UpcomingTitlesTableViewCell.identifier)
         return table
     }()
     
@@ -49,8 +50,16 @@ extension ComingSoon: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = titles[indexPath.row].original_title ?? titles[indexPath.row].original_name ?? "Unknown"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTitlesTableViewCell.identifier, for: indexPath) as? UpcomingTitlesTableViewCell else { return UITableViewCell() }
+        
+        if let movieTitle = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title,
+            let posterImage = titles[indexPath.row].poster_path {
+            cell.configure(with: UpcomingTitlesViewModel(title: movieTitle, image: posterImage))
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 170
     }
 }
