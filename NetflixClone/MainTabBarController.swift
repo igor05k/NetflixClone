@@ -2,8 +2,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     let homeVC = UINavigationController(rootViewController: HomeViewController())
-    let comingSoonVC = UINavigationController(rootViewController: ComingSoon())
-    let topSearchesVC = UINavigationController(rootViewController: TopSearches())
+    let comingSoonVC = UINavigationController(rootViewController: UpcomingViewController())
+    let topSearchesVC = UINavigationController(rootViewController: TopSearchesViewController())
     let downloadsVC = UINavigationController(rootViewController: DownloadsViewController())
 
     override func viewDidLoad() {

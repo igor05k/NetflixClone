@@ -1,6 +1,6 @@
 import UIKit
 
-class ComingSoon: UIViewController {
+class UpcomingViewController: UIViewController {
     var titles: [MoviesAndTVShows] = [MoviesAndTVShows]()
     
     lazy var tableView: UITableView = {
@@ -44,7 +44,7 @@ class ComingSoon: UIViewController {
     }
 }
 
-extension ComingSoon: UITableViewDelegate, UITableViewDataSource {
+extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles.count
     }

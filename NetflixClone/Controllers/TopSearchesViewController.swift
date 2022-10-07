@@ -1,6 +1,6 @@
 import UIKit
 
-class TopSearches: UIViewController {
+class TopSearchesViewController: UIViewController {
     private var titles: [MoviesAndTVShows] = [MoviesAndTVShows]()
     
     lazy var tableView: UITableView = {
@@ -9,7 +9,7 @@ class TopSearches: UIViewController {
         return table
     }()
 
-    lazy var searchBar: UISearchController = {
+    lazy var searchBarController: UISearchController = {
         let searchBarItem = UISearchController(searchResultsController: TopSearchesResultsController())
         searchBarItem.searchBar.placeholder = "Search a movie..."
         searchBarItem.searchBar.searchBarStyle = .minimal
@@ -26,8 +26,10 @@ class TopSearches: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        navigationItem.searchController = searchBar
+        navigationItem.searchController = searchBarController
         fetchDiscoveryMovies()
+        
+        searchBarController.searchResultsUpdater = self
     }
     
     func fetchDiscoveryMovies() {
@@ -51,7 +53,7 @@ class TopSearches: UIViewController {
     }
 }
 
-extension TopSearches: UITableViewDelegate, UITableViewDataSource {
+extension TopSearchesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles.count
     }
@@ -67,5 +69,28 @@ extension TopSearches: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
+    }
+}
+
+extension TopSearchesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBarText = searchBarController.searchBar
+        
+        guard let searchText = searchBarText.text,
+              !searchText.trimmingCharacters(in: .whitespaces).isEmpty,
+              searchText.trimmingCharacters(in: .whitespaces).count >= 3,
+              let resultController = searchBarController.searchResultsController as? TopSearchesResultsController else { return }
+        
+        APICaller.shared.search(with: searchText) { result in
+            switch result {
+            case .success(let items):
+                resultController.titles = items
+                DispatchQueue.main.async {
+                    resultController.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print("error \(error.localizedDescription)")
+            }
+        }
     }
 }

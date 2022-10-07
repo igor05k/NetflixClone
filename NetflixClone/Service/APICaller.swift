@@ -118,8 +118,24 @@ class APICaller {
         }
         task.resume()
     }
+    
+    func search(with query: String, completion: @escaping (Result<[MoviesAndTVShows], Error>) -> Void) {
+        guard let queryFormatted = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        
+        guard let url = URL(string: "\(ConstantsAPI.baseURL)/3/search/movie?api_key=\(ConstantsAPI.API_KEY)&query=\(queryFormatted)") else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else { return }
+            
+            do {
+                let result = try JSONDecoder().decode(MoviesAndTVShowsResponse.self, from: data)
+                completion(.success(result.results))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
 }
-
-/*
- https://api.themoviedb.org/3/discover/movie?api_key=<<api_key>>&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate
- */
