@@ -5,7 +5,7 @@ class ComingSoon: UIViewController {
     
     lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(UpcomingTitlesTableViewCell.self, forCellReuseIdentifier: UpcomingTitlesTableViewCell.identifier)
+        table.register(TitlesTableViewCell.self, forCellReuseIdentifier: TitlesTableViewCell.identifier)
         return table
     }()
     
@@ -50,11 +50,11 @@ extension ComingSoon: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTitlesTableViewCell.identifier, for: indexPath) as? UpcomingTitlesTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitlesTableViewCell.identifier, for: indexPath) as? TitlesTableViewCell else { return UITableViewCell() }
         
         if let movieTitle = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title,
             let posterImage = titles[indexPath.row].poster_path {
-            cell.configure(with: UpcomingTitlesViewModel(title: movieTitle, image: posterImage))
+            cell.configure(with: TitlesViewModel(title: movieTitle, image: posterImage))
         }
         return cell
     }

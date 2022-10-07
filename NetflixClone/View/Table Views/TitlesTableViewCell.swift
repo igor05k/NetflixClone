@@ -1,5 +1,5 @@
 //
-//  UpcomingTitlesTableViewCell.swift
+//  TitlesTableViewCell.swift
 //  NetflixClone
 //
 //  Created by Igor Fernandes on 07/10/22.
@@ -7,13 +7,14 @@
 
 import UIKit
 
-class UpcomingTitlesTableViewCell: UITableViewCell {
-    static let identifier = String(describing: UpcomingTitlesTableViewCell.self)
+class TitlesTableViewCell: UITableViewCell {
+    static let identifier = String(describing: TitlesTableViewCell.self)
     
     lazy var imageViewPoster: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -74,7 +75,7 @@ class UpcomingTitlesTableViewCell: UITableViewCell {
         ])
     }
     
-    public func configure(with viewModel: UpcomingTitlesViewModel) {
+    public func configure(with viewModel: TitlesViewModel) {
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(viewModel.image)") else { return }
         imageViewPoster.sd_setImage(with: url, completed: nil)
         titleLabel.text = viewModel.title

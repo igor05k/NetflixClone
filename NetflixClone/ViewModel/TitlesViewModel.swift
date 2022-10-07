@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UpcomingTitlesViewModel {
+struct TitlesViewModel {
     var title: String
     var image: String
 }
