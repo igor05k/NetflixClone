@@ -54,7 +54,7 @@ extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let movieTitle = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title,
             let posterImage = titles[indexPath.row].poster_path {
-            cell.configure(with: TitlesViewModel(title: movieTitle, image: posterImage))
+            cell.configure(with: TitlesModel(title: movieTitle, image: posterImage))
         }
         return cell
     }

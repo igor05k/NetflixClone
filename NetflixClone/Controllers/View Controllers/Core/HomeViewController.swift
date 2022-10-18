@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
         let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         
         tableView.tableHeaderView = headerView
+        
+        navigationController?.pushViewController(TitlePreviewViewController(), animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

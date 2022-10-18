@@ -75,7 +75,7 @@ class TitlesTableViewCell: UITableViewCell {
         ])
     }
     
-    public func configure(with viewModel: TitlesViewModel) {
+    public func configure(with viewModel: TitlesModel) {
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(viewModel.image)") else { return }
         imageViewPoster.sd_setImage(with: url, completed: nil)
         titleLabel.text = viewModel.title

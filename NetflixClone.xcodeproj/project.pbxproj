@@ -13,6 +13,8 @@
 		8247322128DFACA00076351B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8247322028DFACA00076351B /* Assets.xcassets */; };
 		8247322428DFACA00076351B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8247322228DFACA00076351B /* LaunchScreen.storyboard */; };
 		82517D5028F49DFE00E9AAA4 /* YoutubeVideoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82517D4F28F49DFE00E9AAA4 /* YoutubeVideoResponse.swift */; };
+		8253F75C28FEE1FF0047B166 /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8253F75B28FEE1FF0047B166 /* TitlePreviewViewController.swift */; };
+		82760F5728FEE7A700F06626 /* TitlePreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82760F5628FEE7A700F06626 /* TitlePreviewModel.swift */; };
 		829C82E328E0DEE000976AEB /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E228E0DEE000976AEB /* APICaller.swift */; };
 		829C82E528E0E22A00976AEB /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E428E0E22A00976AEB /* MoviesResponse.swift */; };
 		829C82E928E0FFF800976AEB /* TitlesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E828E0FFF800976AEB /* TitlesCollectionViewCell.swift */; };
@@ -26,7 +28,7 @@
 		82BA2A5728DFBA7700B13A8B /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A5628DFBA7700B13A8B /* CollectionViewTableViewCell.swift */; };
 		82BA2A5928DFC28800B13A8B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA2A5828DFC28800B13A8B /* HeaderView.swift */; };
 		82C1125428F09D9700D978A5 /* TitlesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1125328F09D9700D978A5 /* TitlesTableViewCell.swift */; };
-		82C1125628F09ED400D978A5 /* TitlesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1125528F09ED400D978A5 /* TitlesViewModel.swift */; };
+		82C1125628F09ED400D978A5 /* TitlesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1125528F09ED400D978A5 /* TitlesModel.swift */; };
 		82C1125F28F0ACD200D978A5 /* TopSearchesResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1125E28F0ACD200D978A5 /* TopSearchesResultsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		8247322328DFACA00076351B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8247322528DFACA00076351B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82517D4F28F49DFE00E9AAA4 /* YoutubeVideoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeVideoResponse.swift; sourceTree = "<group>"; };
+		8253F75B28FEE1FF0047B166 /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
+		82760F5628FEE7A700F06626 /* TitlePreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewModel.swift; sourceTree = "<group>"; };
 		829C82E228E0DEE000976AEB /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		829C82E428E0E22A00976AEB /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
 		829C82E828E0FFF800976AEB /* TitlesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -50,7 +54,7 @@
 		82BA2A5628DFBA7700B13A8B /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
 		82BA2A5828DFC28800B13A8B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		82C1125328F09D9700D978A5 /* TitlesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlesTableViewCell.swift; sourceTree = "<group>"; };
-		82C1125528F09ED400D978A5 /* TitlesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlesViewModel.swift; sourceTree = "<group>"; };
+		82C1125528F09ED400D978A5 /* TitlesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlesModel.swift; sourceTree = "<group>"; };
 		82C1125E28F0ACD200D978A5 /* TopSearchesResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSearchesResultsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,7 +143,8 @@
 		82BA2A4928DFB18A00B13A8B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				82C1125528F09ED400D978A5 /* TitlesViewModel.swift */,
+				82C1125528F09ED400D978A5 /* TitlesModel.swift */,
+				82760F5628FEE7A700F06626 /* TitlePreviewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				82C1125E28F0ACD200D978A5 /* TopSearchesResultsController.swift */,
+				8253F75B28FEE1FF0047B166 /* TitlePreviewViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -312,8 +318,10 @@
 				82BA2A5728DFBA7700B13A8B /* CollectionViewTableViewCell.swift in Sources */,
 				82BA2A5028DFB27900B13A8B /* ComingSoonViewController.swift in Sources */,
 				829C82E328E0DEE000976AEB /* APICaller.swift in Sources */,
+				82760F5728FEE7A700F06626 /* TitlePreviewModel.swift in Sources */,
 				82BA2A4C28DFB20700B13A8B /* HomeViewController.swift in Sources */,
-				82C1125628F09ED400D978A5 /* TitlesViewModel.swift in Sources */,
+				8253F75C28FEE1FF0047B166 /* TitlePreviewViewController.swift in Sources */,
+				82C1125628F09ED400D978A5 /* TitlesModel.swift in Sources */,
 				82517D5028F49DFE00E9AAA4 /* YoutubeVideoResponse.swift in Sources */,
 				82BA2A5228DFB28900B13A8B /* TopSearchesViewController.swift in Sources */,
 			);

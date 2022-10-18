@@ -62,7 +62,7 @@ extension TopSearchesViewController: UITableViewDelegate, UITableViewDataSource 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitlesTableViewCell.identifier, for: indexPath) as? TitlesTableViewCell else { return UITableViewCell() }
         if let titleMovie = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title,
            let imagePoster = titles[indexPath.row].poster_path {
-            cell.configure(with: TitlesViewModel(title: titleMovie, image: imagePoster))
+            cell.configure(with: TitlesModel(title: titleMovie, image: imagePoster))
         }
         return cell
     }
