@@ -17,7 +17,7 @@ struct VideoElement: Codable {
 
 struct IdVideoElements: Codable {
     let kind: String
-    let videoId: String?
+    let videoId: String
 }
 
 /*

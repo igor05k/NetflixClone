@@ -10,10 +10,22 @@ import WebKit
 
 class TitlePreviewViewController: UIViewController {
     
+    lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
+    
+    lazy var contentView: UIView = {
+        let content = UIView()
+        content.translatesAutoresizingMaskIntoConstraints = false
+        return content
+    }()
+    
     lazy var webView: WKWebView = {
         let webV = WKWebView()
         webV.translatesAutoresizingMaskIntoConstraints = false
-        webV.backgroundColor = .systemPink
+        webV.contentMode = .scaleAspectFill
         return webV
     }()
     
@@ -22,7 +34,7 @@ class TitlePreviewViewController: UIViewController {
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = .systemFont(ofSize: 22, weight: .bold)
         title.text = "Movie title"
-        title.tintColor = .black
+        title.tintColor = .white
         return title
     }()
     
@@ -31,7 +43,7 @@ class TitlePreviewViewController: UIViewController {
         overview.translatesAutoresizingMaskIntoConstraints = false
         overview.numberOfLines = 0
         overview.text = "This is a sample text for a overview movie title."
-        overview.tintColor = .black
+        overview.tintColor = .white
         overview.font = .systemFont(ofSize: 18, weight: .regular)
         return overview
     }()
@@ -40,45 +52,74 @@ class TitlePreviewViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Download", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
+        button.backgroundColor = .systemRed
         button.clipsToBounds = true
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemPurple
         
+        setScrollViewConstraints()
+        setContentViewConstraints()
         setWebViewConstraints()
         setTitleLabelConstraints()
         setOverviewLabelConstraints()
         setDownloadButtonConstraints()
     }
     
-    private func setWebViewConstraints() {
-        self.view.addSubview(webView)
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    private func setScrollViewConstraints() {
+        self.view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            webView.heightAnchor.constraint(equalToConstant: 200)
+            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+        ])
+    }
+    
+    private func setContentViewConstraints() {
+        scrollView.addSubview(contentView)
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+        ])
+    }
+    
+    private func setWebViewConstraints() {
+        contentView.addSubview(webView)
+        
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            webView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            webView.heightAnchor.constraint(equalToConstant: 260)
         ])
     }
     
     private func setTitleLabelConstraints() {
-        self.view.addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 15),
-            titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
         ])
     }
     
     private func setOverviewLabelConstraints() {
-        self.view.addSubview(overviewLabel)
+        contentView.addSubview(overviewLabel)
         
         NSLayoutConstraint.activate([
             overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
@@ -88,12 +129,22 @@ class TitlePreviewViewController: UIViewController {
     }
     
     private func setDownloadButtonConstraints() {
-        self.view.addSubview(downloadButton)
+        contentView.addSubview(downloadButton)
         
         NSLayoutConstraint.activate([
             downloadButton.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 25),
-            downloadButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            downloadButton.heightAnchor.constraint(equalToConstant: 40)
+            downloadButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            downloadButton.heightAnchor.constraint(equalToConstant: 40),
+            downloadButton.widthAnchor.constraint(equalToConstant: 110),
+            downloadButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
+    }
+    
+    public func configure(with model: TitlePreviewModel) {
+        titleLabel.text = model.titleName
+        overviewLabel.text = model.overview
+        
+        guard let url = URL(string: "https://www.youtube.com/embed/\(model.videoInfo.id.videoId)") else { return }
+        self.webView.load(URLRequest(url: url))
     }
 }

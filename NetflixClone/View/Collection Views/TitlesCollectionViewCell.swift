@@ -13,7 +13,7 @@ class TitlesCollectionViewCell: UICollectionViewCell {
     
     lazy var posterImageView: UIImageView = {
         let imageview = UIImageView()
-        imageview.contentMode = .scaleAspectFill
+        imageview.contentMode = .scaleAspectFit
         return imageview
     }()
     

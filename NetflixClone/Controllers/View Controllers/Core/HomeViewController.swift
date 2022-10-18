@@ -31,7 +31,6 @@ class HomeViewController: UIViewController {
         
         tableView.tableHeaderView = headerView
         
-        navigationController?.pushViewController(TitlePreviewViewController(), animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +67,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
+        cell.delegate = self
         
         switch indexPath.section {
         case Sections.popular.rawValue:
@@ -136,5 +136,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
+    }
+}
+
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func didTapCollectionViewTableViewCell(_ cell: UITableViewCell, model: TitlePreviewModel) {
+        DispatchQueue.main.async {
+            let previewViewController = TitlePreviewViewController()
+            previewViewController.configure(with: model)
+            self.navigationController?.pushViewController(previewViewController, animated: true)
+        }
     }
 }

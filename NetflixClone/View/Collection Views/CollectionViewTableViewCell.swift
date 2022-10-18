@@ -1,14 +1,20 @@
 import UIKit
 
+protocol CollectionViewTableViewCellDelegate: AnyObject {
+    func didTapCollectionViewTableViewCell(_ cell: UITableViewCell, model: TitlePreviewModel)
+}
+
 class CollectionViewTableViewCell: UITableViewCell {
     static let identifier = String(describing: CollectionViewTableViewCell.self)
+    
+    weak var delegate: CollectionViewTableViewCellDelegate?
     
     private var titles: [MoviesAndTVShows] = [MoviesAndTVShows]()
     
     lazy var tvShowcollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 150, height: 200)
+        layout.itemSize = CGSize(width: 150, height: 220)
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(TitlesCollectionViewCell.self, forCellWithReuseIdentifier: TitlesCollectionViewCell.identifier)
@@ -59,13 +65,16 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     
-        if let title = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title {
-            APICaller.shared.youtubeSearch(with: title + " trailer") { result in
+        if let titleName = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title {
+            APICaller.shared.youtubeSearch(with: titleName + " trailer") { [weak self] result in
+                guard let self = self else { return }
                 switch result {
-                case .success(let success):
-                    print(success.id)
+                case .success(let videoElement):
+                    let overview = self.titles[indexPath.row].overview
+                    let model = TitlePreviewModel(titleName: titleName, videoInfo: videoElement, overview: overview ?? "No description available.")
+                    self.delegate?.didTapCollectionViewTableViewCell(self, model: model)
                 case .failure(let failure):
-                    print(failure)
+                    print(failure.localizedDescription)
                 }
             }
         }
