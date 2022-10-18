@@ -52,9 +52,9 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitlesCollectionViewCell.identifier, for: indexPath) as? TitlesCollectionViewCell else { return UICollectionViewCell() }
         
-        guard let titlesPoster = titles[indexPath.row].poster_path else { return UICollectionViewCell() }
-                
-        cell.configure(with: titlesPoster)
+        if let titlesPoster = titles[indexPath.row].poster_path ?? titles[indexPath.row].backdrop_path {
+            cell.configure(with: titlesPoster)
+        }
         return cell
     }
     
