@@ -9,6 +9,8 @@ enum Sections: Int {
 }
 
 class HomeViewController: UIViewController {
+    private var randomTrendingShows: MoviesAndTVShows?
+    private var headerView: HeaderView?
     private let sections = ["Popular", "Trending Shows", "Trending movies", "Upcoming Movies", "Top rated"]
     
     let tableView: UITableView = {
@@ -27,10 +29,10 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .defaultBackgroundColor
         self.navigationController?.setNavigationBarHidden(true, animated: true)
 
-        let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
+        headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         
         tableView.tableHeaderView = headerView
-        
+        configureHeaderView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +45,18 @@ class HomeViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
+    private func configureHeaderView() {
+        APICaller.shared.getTrendingTVShows { [weak self] result in
+            switch result {
+            case .success(let shows):
+                guard let selectedShow = shows.randomElement() else { return }
+                self?.randomTrendingShows = selectedShow
+                self?.headerView?.configure(with: TitlesModel(title: selectedShow.original_title ?? "", image: selectedShow.poster_path ?? ""))
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {

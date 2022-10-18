@@ -23,7 +23,7 @@ class HeaderView: UIView {
     }
     
     // MARK: Image views
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.image = UIImage(named: "dune")
@@ -31,7 +31,7 @@ class HeaderView: UIView {
         return iv
     }()
     
-    lazy var netflixLogoImageView: UIImageView = {
+    private lazy var netflixLogoImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = UIImage(named: "netflixLogo")
@@ -40,7 +40,7 @@ class HeaderView: UIView {
         return iv
     }()
     
-    lazy var addImageView: UIImageView = {
+    private lazy var addImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "plus")
         iv.contentMode = .scaleAspectFit
@@ -49,7 +49,7 @@ class HeaderView: UIView {
         return iv
     }()
     
-    lazy var infoImageView: UIImageView = {
+    private lazy var infoImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "info.circle")
         iv.contentMode = .scaleAspectFit
@@ -59,7 +59,7 @@ class HeaderView: UIView {
     }()
     
     // MARK: Labels
-    lazy var listLabel: UILabel = {
+    private lazy var listLabel: UILabel = {
         let label = UILabel()
         label.text = "My list"
         label.font = .systemFont(ofSize: 15, weight: .light)
@@ -68,7 +68,7 @@ class HeaderView: UIView {
         return label
     }()
     
-    lazy var infoLabel: UILabel = {
+    private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.text = "Info"
         label.font = .systemFont(ofSize: 15, weight: .light)
@@ -77,7 +77,7 @@ class HeaderView: UIView {
         return label
     }()
     
-    lazy var tvShowsLabel: UILabel = {
+    private lazy var tvShowsLabel: UILabel = {
         let label = UILabel()
         label.text = "TV Shows"
         label.font = .systemFont(ofSize: 15, weight: .medium)
@@ -86,7 +86,7 @@ class HeaderView: UIView {
         return label
     }()
     
-    lazy var moviesLabel: UILabel = {
+    private lazy var moviesLabel: UILabel = {
         let label = UILabel()
         label.text = "Movies"
         label.font = .systemFont(ofSize: 15, weight: .medium)
@@ -95,7 +95,7 @@ class HeaderView: UIView {
         return label
     }()
     
-    lazy var myListLabel: UILabel = {
+    private lazy var myListLabel: UILabel = {
         let label = UILabel()
         label.text = "My List"
         label.font = .systemFont(ofSize: 15, weight: .medium)
@@ -105,7 +105,7 @@ class HeaderView: UIView {
     }()
     
     // MARK: Buttons
-    lazy var playButton: UIButton = {
+    private lazy var playButton: UIButton = {
         var container = AttributeContainer()
         container.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         
@@ -129,7 +129,7 @@ class HeaderView: UIView {
     
     // MARK: Stack views
     
-    lazy var topStackView: UIStackView = {
+    private lazy var topStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
@@ -137,7 +137,7 @@ class HeaderView: UIView {
         return stack
     }()
     
-    lazy var leftStackView: UIStackView = {
+    private lazy var leftStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -145,7 +145,7 @@ class HeaderView: UIView {
         return stack
     }()
     
-    lazy var rightStackView: UIStackView = {
+    private lazy var rightStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -153,7 +153,7 @@ class HeaderView: UIView {
         return stack
     }()
     
-    func addGradient() {
+    private func addGradient() {
         let gradient = CAGradientLayer()
         gradient.colors = [
             UIColor.clear.cgColor,
@@ -224,5 +224,12 @@ class HeaderView: UIView {
             topStackView.centerYAnchor.constraint(equalTo: netflixLogoImageView.centerYAnchor),
             topStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
         ])
+    }
+    
+    // MARK: Public funcs
+    public func configure(with model: TitlesModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.image)") else { return }
+        
+        imageView.sd_setImage(with: url, completed: nil)
     }
 }

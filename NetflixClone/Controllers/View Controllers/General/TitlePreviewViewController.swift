@@ -101,7 +101,7 @@ class TitlePreviewViewController: UIViewController {
         contentView.addSubview(webView)
         
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            webView.topAnchor.constraint(equalTo: contentView.topAnchor),
             webView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             webView.heightAnchor.constraint(equalToConstant: 260)
