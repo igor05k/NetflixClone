@@ -11,7 +11,7 @@ class TopSearchesViewController: UIViewController {
 
     lazy var searchBarController: UISearchController = {
         let searchBarItem = UISearchController(searchResultsController: TopSearchesResultsController())
-        searchBarItem.searchBar.placeholder = "Search a movie..."
+        searchBarItem.searchBar.placeholder = "Search for movie, tv show or person..."
         searchBarItem.searchBar.searchBarStyle = .minimal
         return searchBarItem
     }()
@@ -69,6 +69,10 @@ extension TopSearchesViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

@@ -12,6 +12,7 @@
 		8247321C28DFAC990076351B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247321B28DFAC990076351B /* MainTabBarController.swift */; };
 		8247322128DFACA00076351B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8247322028DFACA00076351B /* Assets.xcassets */; };
 		8247322428DFACA00076351B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8247322228DFACA00076351B /* LaunchScreen.storyboard */; };
+		82517D5028F49DFE00E9AAA4 /* YoutubeVideoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82517D4F28F49DFE00E9AAA4 /* YoutubeVideoResponse.swift */; };
 		829C82E328E0DEE000976AEB /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E228E0DEE000976AEB /* APICaller.swift */; };
 		829C82E528E0E22A00976AEB /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E428E0E22A00976AEB /* MoviesResponse.swift */; };
 		829C82E928E0FFF800976AEB /* TitlesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82E828E0FFF800976AEB /* TitlesCollectionViewCell.swift */; };
@@ -37,6 +38,7 @@
 		8247322028DFACA00076351B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8247322328DFACA00076351B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8247322528DFACA00076351B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82517D4F28F49DFE00E9AAA4 /* YoutubeVideoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeVideoResponse.swift; sourceTree = "<group>"; };
 		829C82E228E0DEE000976AEB /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		829C82E428E0E22A00976AEB /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
 		829C82E828E0FFF800976AEB /* TitlesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -88,7 +90,6 @@
 				82BA2A4A28DFB19E00B13A8B /* Controllers */,
 				82BA2A5328DFB72500B13A8B /* Extensions */,
 				8247322528DFACA00076351B /* Info.plist */,
-				8247321B28DFAC990076351B /* MainTabBarController.swift */,
 				82BA2A4728DFB18500B13A8B /* Model */,
 				82BA2A4628DFB17300B13A8B /* Resources */,
 				82BA2A4828DFB18800B13A8B /* View */,
@@ -120,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				829C82E428E0E22A00976AEB /* MoviesResponse.swift */,
+				82517D4F28F49DFE00E9AAA4 /* YoutubeVideoResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,11 +147,8 @@
 		82BA2A4A28DFB19E00B13A8B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				82BA2A4B28DFB20700B13A8B /* HomeViewController.swift */,
-				82BA2A4D28DFB23B00B13A8B /* DownloadsViewController.swift */,
-				82BA2A4F28DFB27900B13A8B /* ComingSoonViewController.swift */,
-				82BA2A5128DFB28900B13A8B /* TopSearchesViewController.swift */,
-				82C1125E28F0ACD200D978A5 /* TopSearchesResultsController.swift */,
+				82C1126328F0E3FD00D978A5 /* Tab Bar */,
+				82C1126028F0E3D700D978A5 /* View Controllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -185,6 +184,42 @@
 				829C82E828E0FFF800976AEB /* TitlesCollectionViewCell.swift */,
 			);
 			path = "Collection Views";
+			sourceTree = "<group>";
+		};
+		82C1126028F0E3D700D978A5 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				82C1126228F0E3E600D978A5 /* General */,
+				82C1126128F0E3E100D978A5 /* Core */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		82C1126128F0E3E100D978A5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				82BA2A4B28DFB20700B13A8B /* HomeViewController.swift */,
+				82BA2A4D28DFB23B00B13A8B /* DownloadsViewController.swift */,
+				82BA2A4F28DFB27900B13A8B /* ComingSoonViewController.swift */,
+				82BA2A5128DFB28900B13A8B /* TopSearchesViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		82C1126228F0E3E600D978A5 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				82C1125E28F0ACD200D978A5 /* TopSearchesResultsController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		82C1126328F0E3FD00D978A5 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				8247321B28DFAC990076351B /* MainTabBarController.swift */,
+			);
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +314,7 @@
 				829C82E328E0DEE000976AEB /* APICaller.swift in Sources */,
 				82BA2A4C28DFB20700B13A8B /* HomeViewController.swift in Sources */,
 				82C1125628F09ED400D978A5 /* TitlesViewModel.swift in Sources */,
+				82517D5028F49DFE00E9AAA4 /* YoutubeVideoResponse.swift in Sources */,
 				82BA2A5228DFB28900B13A8B /* TopSearchesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

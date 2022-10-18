@@ -58,5 +58,16 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+    
+        if let title = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title {
+            APICaller.shared.youtubeSearch(with: title + " trailer") { result in
+                switch result {
+                case .success(let success):
+                    print(success.id)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        }
     }
 }

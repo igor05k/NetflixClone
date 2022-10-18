@@ -19,20 +19,29 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.insetsLayoutMarginsFromSafeArea = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.sectionHeaderTopPadding = .leastNormalMagnitude
         view.addSubview(tableView)
         view.backgroundColor = .defaultBackgroundColor
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
+
+        let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         
         tableView.tableHeaderView = headerView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+    
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
