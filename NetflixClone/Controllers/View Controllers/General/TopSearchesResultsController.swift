@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol TopSearchesResultsControllerDelegate: AnyObject {
+    func didTapTopSearchesResultsController(model: TitlePreviewModel)
+}
+
 class TopSearchesResultsController: UIViewController {
+    weak var delegate: TopSearchesResultsControllerDelegate?
     public var titles: [MoviesAndTVShows] = [MoviesAndTVShows]()
     
     lazy var collectionView: UICollectionView = {
@@ -53,6 +58,18 @@ extension TopSearchesResultsController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        
+        guard let titleName = titles[indexPath.row].original_title ?? titles[indexPath.row].original_name else { return }
+        guard let overview = titles[indexPath.row].overview else { return }
+        
+        APICaller.shared.youtubeSearch(with: titleName + " trailet") { [weak self] result in
+            switch result {
+            case .success(let videoElement):
+                let model = TitlePreviewModel(titleName: titleName, videoInfo: videoElement, overview: overview)
+                self?.delegate?.didTapTopSearchesResultsController(model: model)
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
     }
-    
 }

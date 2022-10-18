@@ -73,17 +73,43 @@ extension TopSearchesViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let titleName = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title else { return }
+        guard let movieOverview = titles[indexPath.row].overview else { return }
+        
+        APICaller.shared.youtubeSearch(with: titleName + " trailer") { result in
+            switch result {
+            case .success(let videoElement):
+                DispatchQueue.main.async {
+                    let previewViewController = TitlePreviewViewController()
+                    previewViewController.configure(with: TitlePreviewModel(titleName: titleName, videoInfo: videoElement, overview: movieOverview))
+                    self.navigationController?.pushViewController(previewViewController, animated: true)
+                }
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
     }
 }
 
-extension TopSearchesViewController: UISearchResultsUpdating {
+extension TopSearchesViewController: UISearchResultsUpdating, TopSearchesResultsControllerDelegate {
+    func didTapTopSearchesResultsController(model: TitlePreviewModel) {
+        DispatchQueue.main.async {
+            let previewViewController = TitlePreviewViewController()
+            previewViewController.configure(with: model)
+            self.navigationController?.pushViewController(previewViewController, animated: true)
+        }
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
+        
         let searchBarText = searchBarController.searchBar
         
         guard let searchText = searchBarText.text,
               !searchText.trimmingCharacters(in: .whitespaces).isEmpty,
               searchText.trimmingCharacters(in: .whitespaces).count >= 3,
               let resultController = searchBarController.searchResultsController as? TopSearchesResultsController else { return }
+        resultController.delegate = self
         
         APICaller.shared.search(with: searchText) { result in
             switch result {
