@@ -1,7 +1,15 @@
 import UIKit
 
+enum Sections: Int {
+    case popular = 0
+    case trendingTv = 1
+    case trendingMovies = 2
+    case upcomingMovies = 3
+    case topRated = 4
+}
+
 class HomeViewController: UIViewController {
-    private let sections = ["Popular", "Trending TV", "Trending movies", "Upcoming Movies", "Top rated"]
+    private let sections = ["Popular", "Trending Shows", "Trending movies", "Upcoming Movies", "Top rated"]
     
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -49,7 +57,61 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
-        cell.backgroundColor = .red
+        
+        switch indexPath.section {
+        case Sections.popular.rawValue:
+            APICaller.shared.getPopularTVShows { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+            
+        case Sections.trendingTv.rawValue:
+            APICaller.shared.getTrendingTVShows { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+            
+        case Sections.trendingMovies.rawValue:
+            APICaller.shared.getTrendingMovies { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+            
+        case Sections.upcomingMovies.rawValue:
+            APICaller.shared.getUpcomingMovies { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+            
+        case Sections.topRated.rawValue:
+            APICaller.shared.getTopRatedMovies { result in
+                switch result {
+                case .success(let success):
+                    cell.feedTitlesArray(with: success)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
+        
         return cell
     }
     
