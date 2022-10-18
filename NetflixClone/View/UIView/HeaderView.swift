@@ -1,6 +1,27 @@
 import UIKit
 
 class HeaderView: UIView {
+    // MARK: Inits
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(imageView)
+        addGradient()
+        setNetflixLogo()
+        setPlayButton()
+        setTopStackView()
+        setLeftStackView()
+        setRightStackView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.frame = bounds
+    }
+    
     // MARK: Image views
     lazy var imageView: UIImageView = {
         let iv = UIImageView()
@@ -141,26 +162,6 @@ class HeaderView: UIView {
         
         gradient.frame = bounds
         layer.addSublayer(gradient)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(imageView)
-        addGradient()
-        setNetflixLogo()
-        setPlayButton()
-        setTopStackView()
-        setLeftStackView()
-        setRightStackView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        imageView.frame = bounds
     }
     
     // MARK: Constraints
